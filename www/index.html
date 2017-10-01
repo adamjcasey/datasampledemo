@@ -2,130 +2,158 @@
 <html>
   <head>
     <title>Three Phase Current and Voltage Dashboard</title>
-    <script type="text/javascript" src="js/smoothie.js"></script>
-    <style>
-    .graph-container { width: 825px; height: 452px; border: #999999 1px solid; }
-    .graph-container canvas { margin: 10px; }
-    .graph-container h2 { font-size: 16px; }
-    .graph-container .legend { font-size: 16px; }
-    .graph-container .legend .label{ float: left; margin-right: 20px;}
-    .graph-container .legend .phase1 { width: 10px; height: 10px; background-color: red; float: left; margin-right: 9px;}
-    .graph-container .legend .phase2 { width: 10px; height: 10px; background-color: blue;  float: left; margin-right: 9px;}
-    .graph-container .legend .phase3 { width: 10px; height: 10px; background-color: green;  float: left; margin-right: 9px;}
-    .graph-container .instantaneous-values { font-size: 16px; clear: left;}
-    .graph-container .instantaneous-values .inst-value { clear: left;}
-    .graph-container .instantaneous-values .inst-value .label { font-weight: bold; float: left;}
-    .graph-container .instantaneous-values .inst-value .value { float: left;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <link rel="stylesheet" type="text/css" href="css/datasampledemo.css">
   </head>
   <body>
 
-    <h1>Three Phase Current and Voltage Dashboard</h1>
-    <div class="graph-container">
-      <h2>Current</h2>
-      <canvas id="current" width="800" height="300"></canvas>
-      <div class="legend">
-        <div class="phase1"></div><span class="label">Phase 1</span>
-        <div class="phase2"></div><span class="label">Phase 2</span>
-        <div class="phase3"></div><span class="label">Phase 3</span>
+  <div class="container">
+
+    <div class="section">
+      <div class="col span_3_of_6 graph-container">
+        <h2>Current</h2>
+        <canvas id="current" width="590" height="300"></canvas>
       </div>
-      <div class="instantaneous-values">
-        <div class="inst-value"><span class="label">Phase 1: </span><span class="value" id="i1"></span></div>
-        <div class="inst-value"><span class="label">Phase 2: </span><span class="value" id="i2"></span></div>
-        <div class="inst-value"><span class="label">Phase 3: </span><span class="value" id="i3"></span></div>
+
+      <div class="col span_3_of_6 graph-container">
+        <h2>Voltage</h2>
+        <canvas id="voltage" width="590" height="300"></canvas>
       </div>
     </div>
 
-    <div class="graph-container">
-      <h2>Voltage</h2>
-      <canvas id="voltage" width="800" height="300"></canvas>
-      <div class="legend">
-        <div class="phase1"></div><span>Phase 1</span>
-        <div class="phase2"></div><span>Phase 2</span>
-        <div class="phase3"></div><span>Phase 3</span>
+    <div class="section">
+
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 1</div>
+        <div class="recent red" id="i1">101.8</div>
+        <div class="unitlabel red">A<span class="rms">RMS</span></div>
+
+        <div class="stats">
+        <div class="stat">
+          <div class="label">Max</div>
+          <div class="value red" id="i1max">121.3</div>
+        </div>
+        <div class="stat">
+          <div class="label">Min</div>
+          <div class="value red" id="i1min">99.3</div>
+        </div>
+        <div class="stat">
+          <div class="label">Avg</div>
+          <div class="value red" id="i1avg">102.1</div>
+        </div>
+        </div>
       </div>
-      <div class="instantaneous-values">
-        <div class="inst-value"><span class="label">Phase 1: </span><span class="value" id="v1"></span></div>
-        <div class="inst-value"><span class="label">Phase 2: </span><span class="value" id="v2"></span></div>
-        <div class="inst-value"><span class="label">Phase 3: </span><span class="value" id="v3"></span></div>
+
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 2</div>
+        <div class="recent green" id="i2">101.8</div>
+        <div class="unitlabel green">A<span class="rms">RMS</span></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Max</div>
+            <div class="value green" id="i2max">121.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Min</div>
+            <div class="value green" id="i2min">99.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avg</div>
+            <div class="value green" id="i2avg">102.1</div>
+          </div>
+        </div>
       </div>
+
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 3</div>
+        <div class="recent blue" id="i3">101.8</div>
+        <div class="unitlabel blue">A<span class="rms">RMS</span></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Max</div>
+            <div class="value blue" id="i3max">121.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Min</div>
+            <div class="value blue" id="i3min">99.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avg</div>
+            <div class="value blue" id="i3avg">102.1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 1</div>
+        <div class="recent red" id="v1">101.8</div>
+        <div class="unitlabel red">V<span class="rms">RMS</span></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Max</div>
+            <div class="value red" id="v1max">121.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Min</div>
+            <div class="value red" id="v1min">99.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avg</div>
+            <div class="value red" id="v1avg">102.1</div>
+          </div>
+        </div>
+      </div>
+
+    
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 2</div>
+        <div class="recent green" id="v2">101.8</div>
+        <div class="unitlabel green">V<span class="rms">RMS</span></div>
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Max</div>
+            <div class="value green" id="v2max">121.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Min</div>
+            <div class="value green" id="v2min">99.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avg</div>
+            <div class="value green" id="v2avg">102.1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col span_1_of_6 data-container">
+        <div class="title">Phase 3</div>
+        <div class="recent blue" id="v3">101.8</div>
+        <div class="unitlabel blue">V<span class="rms">RMS</span></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="label">Max</div>
+            <div class="value blue" id="v3max">121.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Min</div>
+            <div class="value blue" id="v3min">99.3</div>
+          </div>
+          <div class="stat">
+            <div class="label">Avg</div>
+            <div class="value blue" id="v3avg">102.1</div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
+    <script type="text/javascript" src="js/smoothie.js"></script>
+    <script type="text/javascript" src="js/datasampledemo.js"></script>
 
-
-
-
-
-    <script type="text/javascript">
-
-      // Graphs
-      var voltage1 = new TimeSeries();
-      var voltage2 = new TimeSeries();
-      var voltage3 = new TimeSeries();
-
-      var current1 = new TimeSeries();
-      var current2 = new TimeSeries();
-      var current3 = new TimeSeries();
-
-
-        // -------------------------------------------------------------------------------------------------------
-        // First test for the browsers support for WebSockets
-        if (!window.WebSocket) {
-            // If the user's browser does not support WebSockets, give an alert message
-            alert("Your browser does not support the WebSocket API!");
-        } else {
-            // Set the websocket server URL
-            var websocketurl = "ws://172.28.128.3:8080";
-
-            //  Create the WebSocket object
-            socket = new WebSocket(websocketurl);
-
-            // This function is called when the websocket connection is opened
-            socket.onopen = function() {
-              console.log("Open");
-            };
-
-            // This function is called when the websocket connection is closed
-            socket.onclose = function() {
-               console.log("Close");
-            };
-
-            // This function is called when the websocket receives a message. It is passed the message object as its only parameter
-            socket.onmessage = function(message) {
-              console.log(message.data);
-              var dataobject = JSON.parse(message.data);
-
-              voltage1.append(new Date().getTime(), parseFloat(dataobject.v1));
-              voltage2.append(new Date().getTime(), parseFloat(dataobject.v2));
-              voltage3.append(new Date().getTime(), parseFloat(dataobject.v3));
-              current1.append(new Date().getTime(), parseFloat(dataobject.i1));
-              current2.append(new Date().getTime(), parseFloat(dataobject.i2));
-              current3.append(new Date().getTime(), parseFloat(dataobject.i3));
-
-              document.getElementById("v1").innerHTML = dataobject.v1 + "Vrms"; 
-              document.getElementById("v2").innerHTML = dataobject.v2 + "Vrms"; 
-              document.getElementById("v3").innerHTML = dataobject.v3 + "Vrms"; 
-              document.getElementById("i1").innerHTML = dataobject.i1 + "Arms"; 
-              document.getElementById("i2").innerHTML = dataobject.i2 + "Arms"; 
-              document.getElementById("i3").innerHTML = dataobject.i3 + "Arms"; 
-            };
-        }
-
-
-
-      var smoothie_voltage = new SmoothieChart({ grid: { strokeStyle: 'rgb(255, 255, 255)', fillStyle: 'rgb(200, 200, 200)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
-      smoothie_voltage.addTimeSeries(voltage1, { strokeStyle: 'rgb(255, 0, 0)', lineWidth: 3 });
-      smoothie_voltage.addTimeSeries(voltage2, { strokeStyle: 'rgb(0, 0, 255)', lineWidth: 3 });
-      smoothie_voltage.addTimeSeries(voltage3, { strokeStyle: 'rgb(0, 255, 0)', lineWidth: 3 });
-      smoothie_voltage.streamTo(document.getElementById("voltage"), 1000);
-
-      var smoothie_current = new SmoothieChart({ grid: { strokeStyle: 'rgb(255, 255, 255)', fillStyle: 'rgb(200, 200, 200)', lineWidth: 1, millisPerLine: 250, verticalSections: 6 } });
-      smoothie_current.addTimeSeries(current1, { strokeStyle: 'rgb(255, 0, 0)', lineWidth: 3 });
-      smoothie_current.addTimeSeries(current2, { strokeStyle: 'rgb(0, 0, 255)', lineWidth: 3 });
-      smoothie_current.addTimeSeries(current3, { strokeStyle: 'rgb(0, 255, 0)', lineWidth: 3 });
-      smoothie_current.streamTo(document.getElementById("current"), 1000);
-    </script>
-
- 
   </body>
 </html>
