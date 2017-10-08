@@ -42,7 +42,7 @@ if (!window.WebSocket) {
     alert("Your browser does not support the WebSocket API!");
 } else {
     // Set the websocket server URL
-    var websocketurl = "ws://172.28.128.3:8080";
+    var websocketurl = "ws://192.168.137.100:8088";
 
     //  Create the WebSocket object
     socket = new WebSocket(websocketurl);
@@ -75,17 +75,17 @@ if (!window.WebSocket) {
 }
 
 // This is to test without the websocket
-// setInterval(function() {
-//       v1 = Math.random() * 1000;
-//       v2 = Math.random() * 1000;
-//       v3 = Math.random() * 1000;
-//       i1 = Math.random() * 125;
-//       i2 = Math.random() * 125;
-//       i3 = Math.random() * 125;
+setInterval(function() {
+      v1 = Math.random() * 1000;
+      v2 = Math.random() * 1000;
+      v3 = Math.random() * 1000;
+      i1 = Math.random() * 125;
+      i2 = Math.random() * 125;
+      i3 = Math.random() * 125;
 
-//       UpdateGraphs();
+      UpdateGraphs();
 
-//       }, 1000);
+      }, 1000);
 
 function UpdateGraphs() {
   voltage1.append(new Date().getTime(), v1);
