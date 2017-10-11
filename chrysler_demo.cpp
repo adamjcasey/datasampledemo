@@ -37,6 +37,8 @@
 
 #include <iostream>
 #include <cstdint>
+#include <math.h>
+
 
 #include "dataserver.h"
 #include "samples.h"
@@ -52,7 +54,7 @@ int main(int argc, char **argv)
     Samples s;
     std::cout << "Chrysler Demo" << std::endl;
 
-    while (1)
+    while  (1)
     {
         ds.wait(50);
 
@@ -64,29 +66,23 @@ int main(int argc, char **argv)
         while (!s.IsSamplingComplete())
         {
             Samples::DataFromHardware data;
-            data.v1 = static_cast<uint16_t>((5.2/10.0) * 4095);
-            data.v2 = static_cast<uint16_t>((6.4/10.0) * 4095);
-            data.v3 = static_cast<uint16_t>((2.8/10.0) * 4095);
-            data.i1 = static_cast<uint16_t>((8.2/10.0) * 4095);
-            data.i2 = static_cast<uint16_t>((3.4/10.0) * 4095);
-            data.i3 = static_cast<uint16_t>((1.8/10.0) * 4095);
+            data.v1 = static_cast<uint16_t>(((7.9 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
+            data.v2 = static_cast<uint16_t>(((7.9 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
+            data.v3 = static_cast<uint16_t>(((7.9 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
+            data.i1 = static_cast<uint16_t>(((7.1 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
+            data.i2 = static_cast<uint16_t>(((7.1 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
+            data.i3 = static_cast<uint16_t>(((7.1 + (((double) rand() / (RAND_MAX)) / 10.0) ) / 10.0) * 4095);
             s.Append(data);
         }
         // This would take a second but we just faked it so sleep
         sleep(1);
+
+        // Push the data to the database
+
         //----------------------------------------------------------------------------------------
 
         // Create the string
-        double vavg1 = s.GetVoltageAverage(Samples::Phase::PHASE_1);    
-        double vavg2 = s.GetVoltageAverage(Samples::Phase::PHASE_2);    
-        double vavg3 = s.GetVoltageAverage(Samples::Phase::PHASE_3);    
-        double irms1 = s.GetCurrentRMS(Samples::Phase::PHASE_1);    
-        double irms2 = s.GetCurrentRMS(Samples::Phase::PHASE_2);    
-        double irms3 = s.GetCurrentRMS(Samples::Phase::PHASE_3);    
-
-        char buff[256];
-        snprintf(buff, sizeof(buff), "{\"v1\":\"%f\",\"v2\":\"%f\",\"v3\":\"%f\",\"i1\":\"%f\",\"i2\":\"%f\",\"i3\":\"%f\"}", vavg1, vavg2, vavg3, irms1, irms2, irms3);
-
-        ds.broadcast(buff);
+        std::string json = s.GetJSON();
+        ds.broadcast(json.c_str());
     }
 }

@@ -36,6 +36,7 @@
 //------------------------------------------------------------------------------------------------------
 
 #include <cstdint>
+#include <string>
 
 //------------------------------------------------------------------------------------------------------
 class Samples
@@ -63,10 +64,15 @@ class Samples
         void Clear() { sample_counter_ = 0; }
         bool IsSamplingComplete() { return (sample_counter_ >= SAMPLING_FREQUENCY_HZ); }
         void Append(DataFromHardware data);
-        double GetVoltageAverage(Phase phase);
-        double GetCurrentRMS(Phase phase);
+        std::string GetJSON();
 
  private:
+        double GetVoltageAverage(Phase phase);
+        double GetCurrentRMS(Phase phase);
+        void InsertSampleIntoDatabase();
+        std::string GetJSONLive();
+        std::string GetJSONHistory(int decimation);
+
         static constexpr int SAMPLING_FREQUENCY_HZ = 250;
         static constexpr int NUM_PHASES = 3;
         static constexpr double SAMPLE_MAX_VOLTAGE = 10.0;
