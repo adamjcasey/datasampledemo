@@ -4,156 +4,119 @@
     <title>Three Phase Current and Voltage Dashboard</title>
     <link rel="stylesheet" type="text/css" href="css/grid.css">
     <link rel="stylesheet" type="text/css" href="css/datasampledemo.css">
+    <style>
+    #gauge_current, #gauge_voltage, { width: 100px; height: 80px; display: inline-block;  margin: 1em;}
+  </style>
   </head>
   <body>
 
   <div class="container">
 
     <div class="section">
-      <div class="col span_3_of_6 graph-container">
-        <h2>Current</h2>
-        <canvas id="current" width="590" height="300"></canvas>
-      </div>
-
-      <div class="col span_3_of_6 graph-container">
-        <h2>Voltage</h2>
-        <canvas id="voltage" width="590" height="300"></canvas>
-      </div>
-    </div>
-
-    <div class="section">
-
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 1</div>
-        <div class="recent red" id="i1">101.8</div>
-        <div class="unitlabel red">A<span class="rms">RMS</span></div>
-
-        <div class="stats">
-        <div class="stat">
-          <div class="label">Max</div>
-          <div class="value red" id="i1max">121.3</div>
+      <div class="col span_4_of_6 graph-container">
+        <div class="graph-wrapper">
+        <canvas id="graph_canvas" width="750" height="300"></canvas>
         </div>
-        <div class="stat">
-          <div class="label">Min</div>
-          <div class="value red" id="i1min">99.3</div>
-        </div>
-        <div class="stat">
-          <div class="label">Avg</div>
-          <div class="value red" id="i1avg">102.1</div>
-        </div>
-        </div>
-      </div>
+        <div class="graph-button selected-button">Now</div>
+        <div class="graph-button">Past 15 min</div>
+        <div class="graph-button">Past 1 hour</div>
+        <div class="graph-button">Past 10 hours</div>
+        <div class="graph-button">Past 24 hours</div>
 
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 2</div>
-        <div class="recent green" id="i2">101.8</div>
-        <div class="unitlabel green">A<span class="rms">RMS</span></div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Max</div>
-            <div class="value green" id="i2max">121.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Min</div>
-            <div class="value green" id="i2min">99.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Avg</div>
-            <div class="value green" id="i2avg">102.1</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 3</div>
-        <div class="recent blue" id="i3">101.8</div>
-        <div class="unitlabel blue">A<span class="rms">RMS</span></div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Max</div>
-            <div class="value blue" id="i3max">121.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Min</div>
-            <div class="value blue" id="i3min">99.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Avg</div>
-            <div class="value blue" id="i3avg">102.1</div>
-          </div>
+        <div class="table-wrapper">
+        <table class="darkTable">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Now</th>
+              <th>15 Min Avg</th>
+              <th>1 Hr Avg</th>
+              <th>10 Hr Avg</th>
+              <th>24 Hr Avg</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="signal-label voltage1">V Phase 1</span></td>
+              <td><span id="v1_1">0.0</span></td>
+              <td><span id="v1_2">0.0</span></td>
+              <td><span id="v1_3">0.0</span></td>
+              <td><span id="v1_4">0.0</span></td>
+              <td><span id="v1_5">0.0</span></td></tr>
+            <tr>
+              <td><span class="signal-label voltage2">V Phase 2</span></td>
+              <td><span id="v2_1">0.0</span></td>
+              <td><span id="v2_2">0.0</span></td>
+              <td><span id="v2_3">0.0</span></td>
+              <td><span id="v2_4">0.0</span></td>
+              <td><span id="v2_5">0.0</span></td></tr>
+            <tr>
+              <td><span class="signal-label voltage3">V Phase 3</span></td>
+              <td><span id="v3_1">0.0</span></td>
+              <td><span id="v3_2">0.0</span></td>
+              <td><span id="v3_3">0.0</span></td>
+              <td><span id="v3_4">0.0</span></td>
+              <td><span id="v3_5">0.0</span></td></tr>
+            <tr>
+              <td><span class="signal-label current1">I Phase 1</span></td>
+              <td><span id="i1_1">0.0</span></td>
+              <td><span id="i1_2">0.0</span></td>
+              <td><span id="i1_3">0.0</span></td>
+              <td><span id="i1_4">0.0</span></td>
+              <td><span id="i1_5">0.0</span></td></tr>
+            <tr>
+              <td><span class="signal-label current2">I Phase 2</span></td>
+              <td><span id="i2_1">0.0</span></td>
+              <td><span id="i2_2">0.0</span></td>
+              <td><span id="i2_3">0.0</span></td>
+              <td><span id="i2_4">0.0</span></td>
+              <td><span id="i2_5">0.0</span></td></tr>            
+            <tr>
+              <td><span class="signal-label current3">I Phase 3</span></td>
+              <td><span id="i3_1">0.0</span></td>
+              <td><span id="i3_2">0.0</span></td>
+              <td><span id="i3_3">0.0</span></td>
+              <td><span id="i3_4">0.0</span></td>
+              <td><span id="i3_5">0.0</span></td></tr>
+            </tbody>
+            </tr>
+          </table>
         </div>
       </div>
 
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 1</div>
-        <div class="recent red" id="v1">101.8</div>
-        <div class="unitlabel red">V<span class="rms">RMS</span></div>
 
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Max</div>
-            <div class="value red" id="v1max">121.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Min</div>
-            <div class="value red" id="v1min">99.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Avg</div>
-            <div class="value red" id="v1avg">102.1</div>
-          </div>
-        </div>
+      <div class="col span_2_of_6 data-container">
+        <div class="title">Voltage</div>
+        <div class="recent voltage1" id="vavg">0.0</div>
+        <div class="unitlabel voltage1">V<span class="rms">RMS</span></div>
+        <div class="gauge" id="gauge_voltage"></div>
+
+
       </div>
 
-    
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 2</div>
-        <div class="recent green" id="v2">101.8</div>
-        <div class="unitlabel green">V<span class="rms">RMS</span></div>
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Max</div>
-            <div class="value green" id="v2max">121.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Min</div>
-            <div class="value green" id="v2min">99.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Avg</div>
-            <div class="value green" id="v2avg">102.1</div>
-          </div>
-        </div>
+      <div class="col span_2_of_6 data-container">
+        <div class="title">Current</div>
+        <div class="recent current1" id="iavg">0.0</div>
+        <div class="unitlabel current1">A<span class="rms">RMS</span></div>
+
+        <div class="gauge" id="gauge_current"></div>
+
       </div>
 
-      <div class="col span_1_of_6 data-container">
-        <div class="title">Phase 3</div>
-        <div class="recent blue" id="v3">101.8</div>
-        <div class="unitlabel blue">V<span class="rms">RMS</span></div>
+      <div class="col span_2_of_6 button-container">
+        <div class="title">Download Logs</div>
+        <div class="download-button">Past 10 hours</div>
+        <div class="download-button">Past 24 hours</div>
 
-        <div class="stats">
-          <div class="stat">
-            <div class="label">Max</div>
-            <div class="value blue" id="v3max">121.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Min</div>
-            <div class="value blue" id="v3min">99.3</div>
-          </div>
-          <div class="stat">
-            <div class="label">Avg</div>
-            <div class="value blue" id="v3avg">102.1</div>
-          </div>
-        </div>
       </div>
-
-    </div>
   </div>
 
-    <script type="text/javascript" src="js/smoothie.js"></script>
-    <script type="text/javascript" src="js/datasampledemo.js"></script>
+    <script type="text/javascript" src="js/Chart.bundle.js"></script>
+    <script type="text/javascript" src="js/lodash.js"></script>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/raphael-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/justgage.js"></script>
+    <script type="text/javascript" src="js/datasampledemo2.js"></script>
 
   </body>
 </html>

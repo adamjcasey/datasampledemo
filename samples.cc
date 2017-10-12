@@ -237,7 +237,7 @@ std::string Samples::GetJSONHistory(int decimation)
     sqlite3_stmt *stmt;    
 
     char query[128];
-    sprintf(query, "SELECT * FROM samples WHERE ROWID %% %d = 0 ORDER BY unixtimestamp DESC LIMIT 40", decimation);
+    sprintf(query, "SELECT * FROM samples WHERE ROWID %% %d = 0 ORDER BY unixtimestamp DESC LIMIT 60", decimation);
 
     rc = sqlite3_prepare(db_, query, -1, &stmt, NULL);
     if (rc != SQLITE_OK) 
@@ -270,35 +270,77 @@ std::string Samples::GetJSONHistory(int decimation)
     buffer.precision(1);
     buffer << "{";
     // v1
-    buffer << "\"v1\":[";     
+    buffer << "\"v1\":[";   
+    bool first = true;  
     for (double& d: v1)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0],";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "],";     
     // v2
-    buffer << "\"v2\":[";     
+    buffer << "\"v2\":[";   
+    first = true;  
     for (double& d: v2)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0],";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "],";     
+ 
     // v3
-    buffer << "\"v3\":[";     
+    buffer << "\"v3\":[";   
+    first = true;  
     for (double& d: v3)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0],";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "],";     
+  
     // i1
-    buffer << "\"i1\":[";     
+    buffer << "\"i1\":[";   
+    first = true;  
     for (double& d: i1)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0],";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "],";     
+  
     // i2
-    buffer << "\"i2\":[";     
+    buffer << "\"i2\":[";   
+    first = true;  
     for (double& d: i2)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0],";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "],";     
+  
     // i3
-    buffer << "\"i3\":[";     
+    buffer << "\"i3\":[";   
+    first = true;  
     for (double& d: i3)
-        buffer << std::fixed << d << ",";
-    buffer << "0.0]}";     
+    {
+        if (!first)
+            buffer << ",";
+        first = false;
+        buffer << std::fixed << d ;
+    }
+    buffer << "]}";     
+
+   
 
     return buffer.str();
 }
