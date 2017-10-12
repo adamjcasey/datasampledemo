@@ -13,16 +13,30 @@
   <div class="container">
 
     <div class="section">
-      <div class="col span_4_of_6 graph-container">
-        <div class="graph-wrapper">
-        <canvas id="graph_canvas" width="740" height="300"></canvas>
+      <div class="col span_2_of_6">
+        <div class="data-container">
+          <div class="title">Voltage</div>
+          <div class="recent voltage1" id="vavg">0.0</div>
+          <div class="unitlabel voltage1">V<span class="rms">RMS</span></div>
+          <div class="gauge" id="gauge_voltage"></div>
         </div>
-        <div class="graph-button selected-button">Now</div>
-        <div class="graph-button">Past 15 min</div>
-        <div class="graph-button">Past 1 hour</div>
-        <div class="graph-button">Past 10 hours</div>
-        <div class="graph-button">Past 24 hours</div>
 
+        <div class="data-container">
+          <div class="title">Current</div>
+          <div class="recent current1" id="iavg">0.0</div>
+          <div class="unitlabel current1">A<span class="rms">RMS</span></div>
+          <div class="gauge" id="gauge_current"></div>
+        </div>
+
+        <div class="button-container">
+          <div class="title">Download Logs</div>
+          <div class="download-button">Past 10 hours</div>
+          <div class="download-button">Past 24 hours</div>
+        </div>
+      </div>
+
+      <div class="col span_4_of_6">
+      <div class="graph-container">
         <div class="table-wrapper">
         <table class="darkTable">
           <thead>
@@ -82,33 +96,22 @@
             </tr>
           </table>
         </div>
+
+        <div class="graph-wrapper">
+          <canvas id="graph_canvas" width="740" height="300"></canvas>
+          <div class="graph-button selected-button" id="button_live">Now</div>
+          <div class="graph-button" id="button_fifteenmins">Past 15 min</div>
+          <div class="graph-button" id="button_onehour">Past 1 hour</div>
+          <div class="graph-button" id="button_tenhours">Past 10 hours</div>
+          <div class="graph-button" id="button_twentyfourhours">Past 24 hours</div>
+        </div>
+
+
+      </div>
       </div>
 
 
-      <div class="col span_2_of_6 data-container">
-        <div class="title">Voltage</div>
-        <div class="recent voltage1" id="vavg">0.0</div>
-        <div class="unitlabel voltage1">V<span class="rms">RMS</span></div>
-        <div class="gauge" id="gauge_voltage"></div>
 
-
-      </div>
-
-      <div class="col span_2_of_6 data-container">
-        <div class="title">Current</div>
-        <div class="recent current1" id="iavg">0.0</div>
-        <div class="unitlabel current1">A<span class="rms">RMS</span></div>
-
-        <div class="gauge" id="gauge_current"></div>
-
-      </div>
-
-      <div class="col span_2_of_6 button-container">
-        <div class="title">Download Logs</div>
-        <div class="download-button">Past 10 hours</div>
-        <div class="download-button">Past 24 hours</div>
-
-      </div>
   </div>
 
     <script type="text/javascript" src="js/Chart.bundle.js"></script>

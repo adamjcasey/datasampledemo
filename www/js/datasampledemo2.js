@@ -107,30 +107,40 @@ $(document).ready(function() {
     // Button click handlers
     $("#button_live").click(function(){
         graph_display = "live";
+        $(".graph-button").removeClass("selected-button");
+        $("#button_live").addClass("selected-button");
         if (dataobject)
             UpdateGraph();
     });
     
     $("#button_fifteenmins").click(function(){
         graph_display = "fifteenmins";        
+        $(".graph-button").removeClass("selected-button");
+        $("#button_fifteenmins").addClass("selected-button");
         if (dataobject)
             UpdateGraph();
     });
     
     $("#button_onehour").click(function(){
         graph_display = "onehour";
+        $(".graph-button").removeClass("selected-button");
+        $("#button_onehour").addClass("selected-button");
         if (dataobject)
             UpdateGraph();
     });
     
     $("#button_tenhours").click(function(){
         graph_display = "tenhours";        
+        $(".graph-button").removeClass("selected-button");
+        $("#button_tenhours").addClass("selected-button");
         if (dataobject)
             UpdateGraph();
     });
     
     $("#button_twentyfourhours").click(function(){
         graph_display = "twentyfourhours";
+        $(".graph-button").removeClass("selected-button");
+        $("#button_twentyfourhours").addClass("selected-button");
         if (dataobject)
             UpdateGraph();
     });
@@ -266,8 +276,7 @@ function UpdateGraph()
     var graph_vmin = Math.floor(parseFloat(vmin - (2.0 * range)));
 
     voltage_current_chart.options.scales.yAxes[0].ticks.max = graph_vmax;
-    voltage_current_chart.options.scales.yAxes[0].ticks.min = graph_vmin - 2;
-    console.log("graph_vmax: " + graph_vmax + "graph_vmin: " + graph_vmin);
+    voltage_current_chart.options.scales.yAxes[0].ticks.min = graph_vmin - 1;
 
     // Get the min max for all current.  Excluding zeros. Then add 2x to the top and 1x to the bottom for proper display
     var imax = 0;
@@ -295,7 +304,7 @@ function UpdateGraph()
     var graph_imax = Math.ceil(parseFloat(imax + (2.0 * range)));
     var graph_imin = Math.floor(parseFloat(imin -  range));
 
-    voltage_current_chart.options.scales.yAxes[1].ticks.max = graph_imax + 2;
+    voltage_current_chart.options.scales.yAxes[1].ticks.max = graph_imax + 1;
     voltage_current_chart.options.scales.yAxes[1].ticks.min = graph_imin;
 
     voltage_current_chart.data.datasets[0].data = _.reverse(v1graph);

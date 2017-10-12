@@ -4,8 +4,8 @@
 .graph-container canvas { }
 .graph-container h2 { font-size: 12px; color: white; margin-left: 10px;}
 
-.graph-wrapper {margin-top: 10px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px; }
-.data-container { background-color: #2A2A2A; margin-top: 10px;}
+.graph-wrapper {margin-top: 10px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px; height: 348px;}
+.data-container { background-color: #2A2A2A; margin-top: 10px; height: 221px;}
 .voltage1 { color: #dd5f32; }
 .voltage2 { color: #e19d29; }
 .voltage3 { color: #92b06a; }
@@ -18,18 +18,17 @@
 .graph-button { padding: 8px; font-size: 12px; color: white; background-color: #454545; float: left;
     margin-bottom: 11px;
     margin-left: 21px;
-    margin-right: 10px;
     width: 109px;
-    font-weight: bold; text-align: center;}
+    font-weight: bold; text-align: center; cursor: pointer;}
 .selected-button {color: black; background-color: #999999; }
 
-.data-container .title { color: white; font-size: 12px; font-weight: bold;  margin-left: 10px;  margin-top: 10px;}
-.data-container .recent { font-size: 42px; font-weight: bold; margin-left: 10px;  margin-top: 10px; float: left;}
-.data-container .unitlabel { font-size: 26px; font-weight: bold; margin-left: 10px;  margin-top: 10px; float: left; padding-top: 13px;}
+.data-container .title { color: white; font-size: 12px; font-weight: bold;  margin-left: 10px;  margin-top: 10px; position: absolute;}
+.data-container .recent { font-size: 42px; font-weight: bold; margin-left: 10px;  margin-top: 27px; float: left;}
+.data-container .unitlabel { font-size: 26px; font-weight: bold; margin-left: 10px;  margin-top: 27px; float: left; padding-top: 13px;}
 .data-container .unitlabel .rms { font-size: 16px; }
 
-.button-container { background-color: #2A2A2A;  }
-.button-container .title { color: white; font-size: 12px; font-weight: bold;  margin-left: 10px;  margin-top: 10px;}
+.button-container { background-color: #2A2A2A; height: 96px;}
+.button-container .title { color: white; font-size: 12px; font-weight: bold;  margin-left: 10px;  margin-top: 10px; padding-top: 10px;}
 .download-button { padding: 8px; font-size: 12px; color: white; background-color: #454545; float: left;
     margin-bottom: 8px; margin-top: 8px;
     margin-left: 21px;
@@ -37,12 +36,12 @@
     width: 109px;
     font-weight: bold; text-align: center;}
 
-.gauge { width: 320px; height:150px; margin-left: auto; margin-right: auto; margin-bottom: 52px; }
+.gauge { width: 320px; height:154px; margin-left: auto; margin-right: auto;  }
 
-.table-wrapper { margin-top: 20px; }
+.table-wrapper { margin-top: 10px; }
 
 table.darkTable {
-  background-color: #2A2A2A;
+  background-color: #3C3C3C;
   width: 100%;
   height: 200px;
   text-align: center;
@@ -59,7 +58,7 @@ table.darkTable tr:nth-child(even) {
   background: #454545;
 }
 table.darkTable thead {
-  background: #101214;
+  background: #2A2A2A;
 }
 table.darkTable thead th {
   font-size: 12px;
