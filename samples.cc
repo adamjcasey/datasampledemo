@@ -74,10 +74,10 @@ std::string Samples::GetJSON()
     std::stringstream buffer;
 
     buffer << "{\"live\":" << GetJSONLive() << ",";
-    buffer << "\"fifteenmins\":" << GetJSONHistory(1) << ",";
-    buffer << "\"onehour\":" << GetJSONHistory(1) << ",";
-    buffer << "\"tenhours\":" << GetJSONHistory(1) << ",";
-    buffer << "\"twentyfourhours\":" << GetJSONHistory(1);
+    buffer << "\"fifteenmins\":" << GetJSONHistory((15 * 60) / 60) << ",";
+    buffer << "\"onehour\":" << GetJSONHistory((60 * 60) / 60) << ",";
+    buffer << "\"tenhours\":" << GetJSONHistory((10 * 60 * 60) / 60) << ",";
+    buffer << "\"twentyfourhours\":" << GetJSONHistory((24 * 60 * 60) / 60);
     buffer << "}"; 
 
     return buffer.str();
